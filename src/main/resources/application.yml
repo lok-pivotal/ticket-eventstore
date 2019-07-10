@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: ticket-eventstore
+
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+
+  cloud:
+    stream:
+      bindings:
+        input:
+          destination: queue.campaign.domain
+          group: ticket-eventstore
+
+#          binder: local_rabbit
+#      binders:
+#        local_rabbit:
+#          type: rabbit
+#          environment:
+#            spring:
+#              rabbitmq:
+#                host: localhost
+#                port: 5672
+#                username: guest
+#                password: guest
+#                virtual-host: /
